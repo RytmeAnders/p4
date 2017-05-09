@@ -14,6 +14,7 @@ public class ThrowBall : MonoBehaviour {
     void Start()
     {
         arduino = GetComponent<ReadingArduino>();
+        orientation = 0f;
         // Getting rigidbody and ball components
         rb = GetComponent<Rigidbody>();
         ballPos = GameObject.Find("Ball");
@@ -22,8 +23,8 @@ public class ThrowBall : MonoBehaviour {
 
     void Update()
     {
-        //orientation = arduino.orientation;
-        //print(orientation);
+        orientation = arduino.orientation;
+        print(orientation);
     }
 
     public void RotateBall(float yOrientation)
