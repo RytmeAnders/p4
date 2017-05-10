@@ -5,12 +5,16 @@ public class MoveTarget : MonoBehaviour {
 
     private int posCounter;
 
+    public int increaseScore;
+    int score;
+
     private GameObject target;
     private Vector3[] targetPos = new Vector3[6];
 
 	// Use this for initialization
 	void Start () {
         MoveTargetOnArray();
+        score = 0;
     }
 
     void MoveTargetOnArray() // Sets positions target is to be moved to
@@ -28,12 +32,15 @@ public class MoveTarget : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision) // Moves target when hit
     {
+        score += increaseScore;
         posCounter++;
         if (posCounter >= 6)
         {
             posCounter = 0;
         }
-        target.transform.position = targetPos[posCounter];
+        //target.transform.position = targetPos[posCounter];
         print(posCounter);
+        print("Score is: " + score);
+
     }
 }

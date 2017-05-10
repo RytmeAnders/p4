@@ -17,7 +17,7 @@ public class PlayerControls : MonoBehaviour {
         spawnPoint = GameObject.Find("BallSpawnPoint");
 
         u = 100; // Initial velocity in m/s
-        angle = 30; // Angle in degrees
+        angle = 70; // Angle in degrees
     }
 
     // Update is called once per frame
@@ -32,7 +32,7 @@ public class PlayerControls : MonoBehaviour {
         }
         if (arduino.state == 0 && arduino.state1 == 1)
         {
-            LaunchBall(arduino.accHigh * 100f);
+            LaunchBall(arduino.accHigh * 200f);
         }
     }
 
@@ -46,9 +46,12 @@ public class PlayerControls : MonoBehaviour {
         arduino.state1 = 0;
         ballPhys = Instantiate(ballInstance, spawnPoint.transform.position, transform.rotation);
         rb = ballPhys.GetComponent<Rigidbody>();
-        Vector3 direction = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
-        rb.AddForce(direction * (u + (acceleration * Time.deltaTime)));
-        print(direction * (u + (acceleration * Time.deltaTime)));
+        Vector3 direction = spawnPoint.transform.forward;
+        direction.y = 0;
+        direction.Normalize();
+        direction.y = Mathf.Sin(angle * Mathf.Deg2Rad);
+        print(direction);
+        rb.AddForce(direction.normalized * (u + (acceleration * Time.deltaTime)));
         arduino.accHigh = 0;
     }
 }
