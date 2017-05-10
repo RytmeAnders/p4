@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Swoosh : MonoBehaviour {
     //TODO Removed orientationNew, using just ard.orientation, should work
-    //TODO Nice To Have: Stereo Pan manipulation
 
     public bool dynamicSound;
 
