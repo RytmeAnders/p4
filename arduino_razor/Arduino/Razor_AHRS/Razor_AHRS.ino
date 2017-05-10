@@ -168,7 +168,7 @@
 // OUTPUT OPTIONS
 /*****************************************************************/
 // Set your serial port baud rate used to send out data here!
-#define OUTPUT__BAUD_RATE 57600
+#define OUTPUT__BAUD_RATE 38400
 
 // Sensor data output interval in milliseconds
 // This may not work, if faster than 20ms (=50Hz)
@@ -238,9 +238,9 @@ boolean output_errors = false;  // true or false
 
 // Gyroscope
 // "gyro x,y,z (current/average) = .../OFFSET_X  .../OFFSET_Y  .../OFFSET_Z
-#define GYRO_AVERAGE_OFFSET_X ((float) 0.0)
-#define GYRO_AVERAGE_OFFSET_Y ((float) 0.0)
-#define GYRO_AVERAGE_OFFSET_Z ((float) 0.0)
+#define GYRO_AVERAGE_OFFSET_X ((float) 0)
+#define GYRO_AVERAGE_OFFSET_Y ((float) 0)
+#define GYRO_AVERAGE_OFFSET_Z ((float) 0)
 
 /*
 // Calibration example:
@@ -539,9 +539,9 @@ void loop()
   push = digitalRead(buttonThrow);
 
   if (push == LOW) {
-    stateThrow = 1;
-  } else {
     stateThrow = 0;
+  } else {
+    stateThrow = 1;
   } 
 
   Serial.print(event.acceleration.x); Serial.print ("_");

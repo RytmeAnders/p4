@@ -9,14 +9,11 @@ public class ReadingArduino : MonoBehaviour {
     SerialPort stream; // Sets streaming port arduino communicates through
 
 
-    string str, pattern = "_";
+    string str;
     string[] accData = new string[3];
     public float acceleration, accHigh;
     public float orientation, state, state1;
     
-
-    char[] strm = new char[20];
-
 	// Use this for initialization
 	void Start () {
         string[] ports = SerialPort.GetPortNames();
@@ -45,13 +42,14 @@ public class ReadingArduino : MonoBehaviour {
                 str = stream.ReadLine();
                 accData = str.Split('_'); // Splits string
                 acceleration = float.Parse(accData[0]); //Parsing the split string into floats
+                orientation = float.Parse(accData[1]);
+                state = float.Parse(accData[2]);
                 if (acceleration > accHigh)
                 {
                     accHigh = acceleration;
                     print(accHigh);
                 }
-                orientation = float.Parse(accData[1]);
-                state = float.Parse(accData[2]);
+                
             }
             catch (TimeoutException){
             }
