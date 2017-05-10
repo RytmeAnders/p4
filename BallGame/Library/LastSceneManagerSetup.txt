@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/andreas.unity
+- path: Assets/anders.unity
   isLoaded: 1
   isActive: 1

@@ -21,7 +21,7 @@ public class ReadingArduino : MonoBehaviour {
         {
             Debug.Log(ports[i]);
         }
-        stream = new SerialPort("COM9", 9600);
+        stream = new SerialPort("COM7", 9600);
         accHigh = 0;
         state1 = 0;
         //Opens stream
@@ -47,7 +47,7 @@ public class ReadingArduino : MonoBehaviour {
                 if (acceleration > accHigh)
                 {
                     accHigh = acceleration;
-                    print(accHigh);
+                    //print(accHigh);
                 }
                 
             }
