@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Swoosh : MonoBehaviour {
     //TODO Removed orientationNew, using just ard.orientation, should work
-    //TODO Nice To Have: Stereo Pan manipulation
 
     public bool dynamicSound;
 
     //---- Parameters inside Unity
-    [Range(0f, 10f)] public float staticThreshold;          //Threshold determining when the static sample will play
+    [Range(0f, 10f)] public float staticThreshold;          //Threshold determining when the static sample will play (3 seems good)
     [Range(0,2000)] public int staticFreq;                  //The frequency cut off for the static sample
     [Range(-1f, 1f)] public float offset;                   //offset slider with range -1:1 (range defined above)
     public int lowCut, scalar;
@@ -45,24 +44,23 @@ public class Swoosh : MonoBehaviour {
         accelerationDiff = Mathf.Abs(ard.acceleration - accelerationOld);
         accelerationOld = ard.acceleration;
 
-        if (dynamicSound) {
-            /*TODO Maybe this prevents clipping?
-            if(orientationDiff > ard.orientation) {
-                orientationDiff = Mathf.Abs(ard.orientation);
-            }*/
-            dynamicDiff = Mathf.Max(orientationDiff, accelerationDiff);                 //Find the biggest change
+        dynamicDiff = Mathf.Max(orientationDiff, accelerationDiff);                 //Find the biggest change
 
+        if (dynamicSound) {
             print("Diff Ori: " + orientationDiff + " Raw Ori: " + ard.orientation
                 + " | Diff Acc: " + accelerationDiff + " Raw Acc: " + ard.acceleration);
             lowPassFilter.cutoffFrequency = lowCut + dynamicDiff * scalar;              //LPF freq changing based on change
         }
         else { //Static sound
-            if (orientationDiff > staticThreshold) {        //If difference is > threshold, play a static sound sample
+            print(dynamicDiff);
+            if (dynamicDiff > staticThreshold) {        //If difference is > threshold, play a static sound sample
                 print("Sound Activated!");
                 lowPassFilter.cutoffFrequency = staticFreq; //Static sample plays at a set freq cut off
             }
-            print("Sound Inactive!");
-            lowPassFilter.cutoffFrequency = 0;              //If no difference over time, filter out all freqs (play no sound)
+            else {
+                print("Sound Inactive!");
+                lowPassFilter.cutoffFrequency = 0;              //If no difference over time, filter out all freqs (play no sound)
+            }
         }
     }
 }

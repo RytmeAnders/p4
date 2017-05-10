@@ -5,12 +5,15 @@ public class BallChirp : MonoBehaviour {
     //TODO frequency is based on acceleration
     public double frequency;
     public double gain;
+    public AudioClip impact;
 
     private double increment;
     private double phase;
     private double sampling_frequency = 48000;
+    private bool ballLanded;                    //Determining when the ball hits the ground
 
     Swoosh swoosh;                              //swoosh script for accessing the Dynamic Sound bool, so its global
+    AudioSource myAudio;
 
     //TODO decayRate is based on distance
     private float decayRate = 2;                    //How fast the chirp frequency will drop
@@ -30,6 +33,7 @@ public class BallChirp : MonoBehaviour {
 
     void Start() {
         swoosh = GetComponent<Swoosh>();
+        myAudio = GetComponent<AudioSource>();
 
         if (swoosh.dynamicSound) {
             //TODO Put dynamic parameters in here?
@@ -43,9 +47,10 @@ public class BallChirp : MonoBehaviour {
         if (swoosh.dynamicSound) {
             //TODO Put dynamic sound in here
         }
-        else {
-            if (frequency <= 50) {
+        else { //Static
+            if (frequency <= 100) {
                 frequency = 0;
+                myAudio.PlayOneShot(impact, 1f);
             }
             else {
                 frequency -= decayRate;
