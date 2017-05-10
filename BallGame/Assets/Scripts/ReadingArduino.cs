@@ -21,7 +21,7 @@ public class ReadingArduino : MonoBehaviour {
         {
             Debug.Log(ports[i]);
         }
-        stream = new SerialPort("COM9", 9600);
+        stream = new SerialPort("COM9", 38400);
         accHigh = 0;
         state1 = 0;
         //Opens stream
@@ -41,9 +41,9 @@ public class ReadingArduino : MonoBehaviour {
                 // Reads data to string
                 str = stream.ReadLine();
                 accData = str.Split('_'); // Splits string
-                acceleration = float.Parse(accData[0]); //Parsing the split string into floats
-                orientation = float.Parse(accData[1]);
-                state = float.Parse(accData[2]);
+                acceleration = float.Parse(accData[0]); //Parsing the split string into floats, acceleration for the ball being launched
+                orientation = float.Parse(accData[1]); // Parsing to the orientation, used for rotating the player
+                state = float.Parse(accData[2]); // Parsing the state used for button on/off
                 if (acceleration > accHigh)
                 {
                     accHigh = acceleration;

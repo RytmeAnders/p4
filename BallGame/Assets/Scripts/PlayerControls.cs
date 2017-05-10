@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerControls : MonoBehaviour {
 
     public GameObject ballInstance;
-    GameObject player;
+    GameObject ballPhys, spawnPoint;
     Rigidbody rb;
     ReadingArduino arduino;
 
@@ -14,7 +14,7 @@ public class PlayerControls : MonoBehaviour {
     // Use this for initialization
     void Start () {
         arduino = GetComponent<ReadingArduino>();
-        player = GameObject.Find("Player");
+        spawnPoint = GameObject.Find("BallSpawnPoint");
 
         u = 100; // Initial velocity in m/s
         angle = 30; // Angle in degrees
@@ -22,10 +22,10 @@ public class PlayerControls : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        //if (arduino.state == 0 && arduino.state1 == 0)
-        
+        if (arduino.state == 0 && arduino.state1 == 0)
+        {
             RotatePlayer(arduino.orientation); // Calls for rotations based off orientation received from arduino
-        
+        }
         if (arduino.state == 1 && arduino.state1 == 0)
         {
             arduino.state1 = 1;
@@ -44,9 +44,10 @@ public class PlayerControls : MonoBehaviour {
     void LaunchBall(float acceleration)
     {
         arduino.state1 = 0;
-        Instantiate(ballInstance, transform.position+(transform.forward*2), player.transform.rotation);
+        ballPhys = Instantiate(ballInstance, spawnPoint.transform.position, transform.rotation);
+        rb = ballPhys.GetComponent<Rigidbody>();
         Vector3 direction = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
-        //ball.AddForce(direction * (u + (acceleration * Time.deltaTime)));
+        rb.AddForce(direction * (u + (acceleration * Time.deltaTime)));
         print(direction * (u + (acceleration * Time.deltaTime)));
         arduino.accHigh = 0;
     }

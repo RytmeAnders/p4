@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: 045d0605afdfbff4c83a0a2f93cef8eb
-timeCreated: 1494341502
+timeCreated: 1494416056
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - ballInstance: {fileID: 1515868897294470, guid: 1d6943104edb949499b005402e4b4c99,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
