@@ -10,9 +10,10 @@ public class ReadingArduino : MonoBehaviour {
 
 
     string str;
-    string[] accData = new string[3];
+    string[] accData = new string[4];
     public float acceleration, accHigh;
     public float orientation, state, state1;
+    public float accSound;
     
 	// Use this for initialization
 	void Start () {
@@ -44,12 +45,7 @@ public class ReadingArduino : MonoBehaviour {
                 acceleration = float.Parse(accData[0]); //Parsing the split string into floats, acceleration for the ball being launched
                 orientation = float.Parse(accData[1]); // Parsing to the orientation, used for rotating the player
                 state = float.Parse(accData[2]); // Parsing the state used for button on/off
-                if (acceleration > accHigh)
-                {
-                    accHigh = acceleration;
-                    //print(accHigh);
-                }
-                
+                accSound = float.Parse(accData[3]);
             }
             catch (TimeoutException){
             }

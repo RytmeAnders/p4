@@ -32,6 +32,13 @@ public class PlayerControls : MonoBehaviour {
         {
             arduino.state1 = 1;
         }
+        if (arduino.state == 1 && arduino.state1 == 1)
+        {
+            if (arduino.acceleration > arduino.accHigh)
+            {
+                arduino.accHigh = arduino.acceleration;
+            }
+        }
         if (arduino.state == 0 && arduino.state1 == 1)
         {
             LaunchBall(arduino.accHigh * 200f);

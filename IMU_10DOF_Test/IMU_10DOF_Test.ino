@@ -148,6 +148,10 @@ void loop()
     Serial.print("_");
     Serial.print(stateThrow);
 
+    Serial.print("_");
+    Serial.print(Gxyz[1]);
+
+
     temperature = Barometer.bmp180GetTemperature(Barometer.bmp180ReadUT()); //Get the temperature, bmp180ReadUT MUST be called first
     pressure = Barometer.bmp180GetPressure(Barometer.bmp180ReadUP());//Get the temperature
     altitude = Barometer.calcAltitude(pressure); //Uncompensated caculation - in Meters

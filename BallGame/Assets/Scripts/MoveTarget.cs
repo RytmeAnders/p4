@@ -3,13 +3,13 @@ using System.Collections;
 
 public class MoveTarget : MonoBehaviour {
 
-    private int posCounter;
+    public int posCounter;
 
     public int increaseScore;
     int score;
 
-    private GameObject target;
-    private Vector3[] targetPos = new Vector3[6];
+    public GameObject targetSmall, targetLarge;
+    public Vector3[] targetPos = new Vector3[6];
 
 	// Use this for initialization
 	void Start () {
@@ -17,17 +17,20 @@ public class MoveTarget : MonoBehaviour {
         score = 0;
     }
 
+
     void MoveTargetOnArray() // Sets positions target is to be moved to
     {
         posCounter = -1;
-        target = GameObject.Find("Target");
-        target.transform.position = new Vector3(0f, 0f, 0f);
-        targetPos[0] = new Vector3(10f, 10f, 10f);
-        targetPos[1] = new Vector3(20f, 20f, 20f);
-        targetPos[2] = new Vector3(30f, 30f, 30f);
-        targetPos[3] = new Vector3(40f, 40f, 40f);
-        targetPos[4] = new Vector3(50f, 50f, 50f);
-        targetPos[5] = new Vector3(60f, 60f, 60f);
+        targetSmall = GameObject.Find("Small Circle");
+        targetSmall.transform.position = new Vector3(10f, 0.05f, 10f);
+        targetLarge = GameObject.Find("Large Object");
+        targetLarge.transform.position = new Vector3(10f, 0.05f, 10f);
+        targetPos[0] = new Vector3(10f, 0.05f, 10f);
+        targetPos[1] = new Vector3(-10f, 0.05f, -10f);
+        targetPos[2] = new Vector3(30f, 0.05f, 30f);
+        targetPos[3] = new Vector3(40f, 0.05f, 40f);
+        targetPos[4] = new Vector3(50f, 0.05f, 50f);
+        targetPos[5] = new Vector3(60f, 0.05f, 60f);
     }
 
     void OnCollisionEnter(Collision collision) // Moves target when hit
@@ -38,7 +41,8 @@ public class MoveTarget : MonoBehaviour {
         {
             posCounter = 0;
         }
-        //target.transform.position = targetPos[posCounter];
+        targetLarge.transform.position = targetPos[posCounter];
+        targetSmall.transform.position = targetPos[posCounter];
         print(posCounter);
         print("Score is: " + score);
 
