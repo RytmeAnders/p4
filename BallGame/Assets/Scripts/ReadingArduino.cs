@@ -47,7 +47,7 @@ public class ReadingArduino : MonoBehaviour {
                 if (acceleration > accHigh)
                 {
                     accHigh = acceleration;
-                    print(accHigh);
+                    //print(accHigh);
                 }
                 
             }

@@ -9,7 +9,7 @@ public class PlayerControls : MonoBehaviour {
     Rigidbody rb;
     ReadingArduino arduino;
 
-    float newOrientation;
+    public float newOrientation;
     int u, angle; //Initial Velocity u (Science notation) and angle
 
     // Use this for initialization
