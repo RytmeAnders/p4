@@ -48,6 +48,7 @@ volatile int mx_min = 0;
 volatile int my_min = 0;
 volatile int mz_min = 0;
 
+float accelerationCut;
 float temperature;
 float pressure;
 float atm;
@@ -73,6 +74,8 @@ void setup()
     //Serial.println("Initializing I2C devices...");
     accelgyro.initialize();
     Barometer.init();
+
+    accelerationCut = 5.0;
 
     // verify connection
    // Serial.println("Testing device connections...");
@@ -122,7 +125,7 @@ void loop()
       Gxyz[0] = 0;
       Serial.print(Gxyz[0]);
     } else {
-      Serial.print(Gxyz[0]);
+      Serial.print(Gxyz[0]/accelerationCut);
     }
     
     Serial.print("_");
@@ -139,7 +142,7 @@ void loop()
     Serial.print(heading);
     Serial.println(" ");
     Serial.println("The clockwise angle between the magnetic north and the projection of the positive X-Axis in the horizontal plane:");
-    */Serial.print(tiltheading);
+    */Serial.print(Gxyz[2]);
     //Serial.println("   ");
 
     Serial.print("_");

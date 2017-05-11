@@ -9,6 +9,7 @@ public class PlayerControls : MonoBehaviour {
     Rigidbody rb;
     ReadingArduino arduino;
 
+    float newOrientation;
     int u, angle; //Initial Velocity u (Science notation) and angle
 
     // Use this for initialization
@@ -16,7 +17,8 @@ public class PlayerControls : MonoBehaviour {
         arduino = GetComponent<ReadingArduino>();
         spawnPoint = GameObject.Find("BallSpawnPoint");
 
-        u = 100; // Initial velocity in m/s
+        newOrientation = 0f;
+        u = 10; // Initial velocity in m/s
         angle = 70; // Angle in degrees
     }
 
@@ -38,7 +40,8 @@ public class PlayerControls : MonoBehaviour {
 
     public void RotatePlayer(float yOrientation)
     {
-        transform.localEulerAngles = new Vector3(0, yOrientation, 0); // Rotate player
+        newOrientation = newOrientation + (-1*yOrientation/9f);
+        transform.localEulerAngles = new Vector3(0, newOrientation, 0); // Rotate player
     }
 
     void LaunchBall(float acceleration)
@@ -50,8 +53,8 @@ public class PlayerControls : MonoBehaviour {
         direction.y = 0;
         direction.Normalize();
         direction.y = Mathf.Sin(angle * Mathf.Deg2Rad);
-        print(direction);
-        rb.AddForce(direction.normalized * (u + (acceleration * Time.deltaTime)));
+        print(Time.deltaTime);
+        rb.AddForce(direction.normalized * (u + acceleration*0.11f));
         arduino.accHigh = 0;
     }
 }
