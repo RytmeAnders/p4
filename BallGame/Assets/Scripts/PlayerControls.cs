@@ -8,6 +8,8 @@ public class PlayerControls : MonoBehaviour {
     GameObject ballPhys, spawnPoint;
     Rigidbody rb;
     ReadingArduino arduino;
+    Staticsound ST;
+    Swoosh swoosh;
 
     public float newOrientation;
     int u, angle; //Initial Velocity u (Science notation) and angle
@@ -16,6 +18,8 @@ public class PlayerControls : MonoBehaviour {
     void Start () {
         arduino = GetComponent<ReadingArduino>();
         spawnPoint = GameObject.Find("BallSpawnPoint");
+        ST = GameObject.Find("PlayerStatic").GetComponent<Staticsound>();
+        swoosh = GameObject.Find("PlayerAudio").GetComponent<Swoosh>();
 
         newOrientation = 0f;
         u = 10; // Initial velocity in m/s
@@ -53,6 +57,9 @@ public class PlayerControls : MonoBehaviour {
 
     void LaunchBall(float acceleration)
     {
+        if (!swoosh.dynamicSound) { //Static sound, play chirp
+            ST.playChirp();
+        }
         arduino.state1 = 0;
         ballPhys = Instantiate(ballInstance, spawnPoint.transform.position, transform.rotation);
         rb = ballPhys.GetComponent<Rigidbody>();

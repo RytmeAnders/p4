@@ -14,11 +14,16 @@ public class MoveTarget : MonoBehaviour {
     public int currentTarget;
     public int[] missedTargetCount = new int[6];
 
+    Staticsound ST;
+    Swoosh swoosh;
+
     // Use this for initialization
     void Start () {
         MoveTargetOnArray();
         score = 0;
         currentTarget = 0;
+        ST = GameObject.Find("PlayerStatic").GetComponent<Staticsound>();
+        swoosh = GameObject.Find("PlayerAudio").GetComponent<Swoosh>();
     }
 
 

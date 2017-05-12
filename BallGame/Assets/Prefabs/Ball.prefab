@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 82010817745680244}
   - component: {fileID: 114122149089629608}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: Audio Chirp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

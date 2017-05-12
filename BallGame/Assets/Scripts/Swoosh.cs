@@ -26,7 +26,7 @@ public class Swoosh : MonoBehaviour
     PlayerControls pc;
     ReadingArduino ard;
     AudioSource myAudio;
-    public AudioClip staticSwoosh;                          //Clip for static swoosh
+    Staticsound ST;
 
     void OnAudioFilterRead (float[] data, int channels)
     {                //White noise generation
@@ -38,6 +38,7 @@ public class Swoosh : MonoBehaviour
 
     void Start()
     {
+        ST = GameObject.Find("PlayerStatic").GetComponent<Staticsound>();
         pc = GameObject.Find("Player").GetComponent<PlayerControls>(); //Object of the ReadingArduino script
         ard = GameObject.Find("Player").GetComponent<ReadingArduino>();
         lowPassFilter = GetComponent<AudioLowPassFilter>();             //Object of the LowPassFilter component
@@ -51,22 +52,19 @@ public class Swoosh : MonoBehaviour
     {
         dynamicDiff = Mathf.Max(CalculateOrientation(),CalculateAcceleration());        //Find the biggest change
 
-        if (dynamicSound)
-        {
+        if (dynamicSound) {
             //print("Diff Ori: " + orientationDiff + " Raw Ori: " + pc.newOrientation + " | Diff Acc: " + accelerationDiff + " Raw Acc: " + ard.acceleration);
             lowPassFilter.cutoffFrequency = lowCut + dynamicDiff * scalar;              //LPF freq changing based on change
         }
-        else
-        { //Static sound
-            if (dynamicDiff > staticThreshold)
-            {        //If difference is > threshold, play a static sound sample
+        else { //Static sound
+
+            if (dynamicDiff > staticThreshold) {        //If difference is > threshold, play a static sound sample
                 print("Sound activated!");
-                lowPassFilter.cutoffFrequency = staticFreq;
+                ST.playSwoosh();
             }
-            else
-            {
+            else {
                 print("Sound Inactive!");
-                lowPassFilter.cutoffFrequency = 0;              //If no difference over time, filter out all freqs (play no sound)
+                lowPassFilter.cutoffFrequency = 0; //If no difference over time, filter out all freqs (play no sound)
             }
         }
     }
