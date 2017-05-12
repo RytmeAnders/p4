@@ -11,10 +11,14 @@ public class MoveTarget : MonoBehaviour {
     public GameObject targetSmall, targetLarge;
     public Vector3[] targetPos = new Vector3[6];
 
-	// Use this for initialization
-	void Start () {
+    public int currentTarget;
+    public int[] missedTargetCount = new int[6];
+
+    // Use this for initialization
+    void Start () {
         MoveTargetOnArray();
         score = 0;
+        currentTarget = 0;
     }
 
 
@@ -37,13 +41,13 @@ public class MoveTarget : MonoBehaviour {
     {
         score += increaseScore;
         posCounter++;
+        currentTarget++;
         if (posCounter >= 6)
         {
             posCounter = 0;
         }
         targetLarge.transform.position = targetPos[posCounter];
         targetSmall.transform.position = targetPos[posCounter];
-        print(posCounter);
         print("Score is: " + score);
 
     }

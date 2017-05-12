@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class BallInteraction : MonoBehaviour {
 
+    MoveTarget MT;
     GameObject ball;
 
 	// Use this for initialization
 	void Start () {
         ball = this.gameObject;
+        MT = GameObject.Find("Small Circle").GetComponent<MoveTarget>();
 	}
 	
 	// Update is called once per frame
@@ -20,7 +22,9 @@ public class BallInteraction : MonoBehaviour {
     {
        if (ball.transform.position.y < -2)
         {
+            MT.missedTargetCount[MT.currentTarget] += 1;
             Destroy(this.gameObject);
+            print("Current Target: " + MT.currentTarget + ", Miss: " + MT.missedTargetCount[MT.currentTarget]);
         }
     }
 
