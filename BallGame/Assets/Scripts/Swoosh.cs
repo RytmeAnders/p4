@@ -10,7 +10,7 @@ public class Swoosh : MonoBehaviour
 
     //---- Parameters inside Unity
     [Range(0f, 20f)]
-    public float staticThreshold;          //Threshold determining when the static sample will play (3 seems good)
+    public float staticThreshold;          //Threshold determining when the static sample will play (8-9 seems good)
     [Range(0, 2000)]
     public int staticFreq;                  //The frequency cut off for the static sample
     [Range(-1f, 1f)]
