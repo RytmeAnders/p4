@@ -29,9 +29,13 @@ public class BallInteraction : MonoBehaviour {
             ST.aud.Stop();
             MT.missedTargetCount[MT.currentTarget] += 1;
             if (swoosh.dynamicSound) {
+                float dist = Vector3.Distance(ball.transform.position, MT.targets.transform.position);
+                ST.GetComponent<AudioReverbFilter>().reverbLevel = (dist / 100);
                 ST.playMiss();
                 Destroy(this.gameObject);
                 print("Current Target: " + MT.currentTarget + ", Miss: " + MT.missedTargetCount[MT.currentTarget]);
+                print("Distance: " + dist);
+                ST.GetComponent<AudioReverbFilter>().reverbLevel = 0;
             }
             if (!swoosh.dynamicSound) {
                 ST.playMiss();
