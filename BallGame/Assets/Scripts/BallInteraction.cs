@@ -29,7 +29,9 @@ public class BallInteraction : MonoBehaviour {
             ST.aud.Stop();
             MT.missedTargetCount[MT.currentTarget] += 1;
             if (swoosh.dynamicSound) {
-                //Dynamic
+                ST.playMiss();
+                Destroy(this.gameObject);
+                print("Current Target: " + MT.currentTarget + ", Miss: " + MT.missedTargetCount[MT.currentTarget]);
             }
             if (!swoosh.dynamicSound) {
                 ST.playMiss();
@@ -43,7 +45,7 @@ public class BallInteraction : MonoBehaviour {
     {
         ST.aud.Stop();
         if (swoosh.dynamicSound) {
-            //Dynamic
+            Destroy(this.gameObject);
         }
         if (!swoosh.dynamicSound) {
             ST.playScore();

@@ -55,5 +55,12 @@ public class MoveTarget : MonoBehaviour {
         targetSmall.transform.position = targetPos[posCounter];
         print("Score is: " + score);
 
+        //Play the score sound, pitch affected by increaseScore
+        if (swoosh.dynamicSound) {
+            ST.aud.Stop();
+            ST.aud.pitch = .3f + ((increaseScore * 1.5f) / 10);
+            ST.playScore();
+        }
+
     }
 }
