@@ -27,25 +27,25 @@ public class BallInteraction : MonoBehaviour {
        if (ball.transform.position.y < -2)
         {
             ST.aud.Stop();
-            MT.missedTargetCount[MT.currentTarget] += 1;
+            MT.missedTargetCount[MoveTarget.currentTarget] += 1;
             if (swoosh.dynamicSound) {
                 float dist = Vector3.Distance(ball.transform.position, MT.targets.transform.position);
                 ST.GetComponent<AudioReverbFilter>().reverbLevel = (dist / 100);
                 ST.playMiss();
                 Destroy(this.gameObject);
-                print("Current Target: " + MT.currentTarget + ", Miss: " + MT.missedTargetCount[MT.currentTarget]);
+                print("Current Target: " + MoveTarget.currentTarget + ", Miss: " + MT.missedTargetCount[MoveTarget.currentTarget]);
                 print("Distance: " + dist);
                 ST.GetComponent<AudioReverbFilter>().reverbLevel = 0;
             }
             if (!swoosh.dynamicSound) {
                 ST.playMiss();
                 Destroy(this.gameObject);
-                print("Current Target: " + MT.currentTarget + ", Miss: " + MT.missedTargetCount[MT.currentTarget]);
+                print("Current Target: " + MoveTarget.currentTarget + ", Miss: " + MT.missedTargetCount[MoveTarget.currentTarget]);
             }
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         ST.aud.Stop();
         if (swoosh.dynamicSound) {

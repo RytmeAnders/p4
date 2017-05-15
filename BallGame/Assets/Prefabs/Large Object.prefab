@@ -104,7 +104,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1304551239407900}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 06fb44f17c6040b4cb7a52dfdbf96f98, type: 3}
@@ -118,7 +118,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -147,7 +147,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -206,7 +206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 895e46d92544cc643bba7c89157ad664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posCounter: 0
   increaseScore: 5
   targets: {fileID: 0}
   targetPos:
@@ -216,5 +215,4 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
-  currentTarget: 0
   missedTargetCount: 000000000000000000000000000000000000000000000000

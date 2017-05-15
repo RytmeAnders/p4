@@ -3,15 +3,15 @@ using System.Collections;
 
 public class MoveTarget : MonoBehaviour {
 
-    public int posCounter;
+    public static int posCounter;
 
     public int increaseScore;
-    int score;
+    public static int score;
 
     public GameObject targets;
     public Vector3[] targetPos = new Vector3[6];
 
-    public int currentTarget;
+    public static int currentTarget;
     public int[] missedTargetCount = new int[6];
 
     Staticsound ST;
