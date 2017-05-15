@@ -45,7 +45,7 @@ public class PlayerControls : MonoBehaviour {
         }
         if (arduino.state == 0 && arduino.state1 == 1)
         {
-            LaunchBall(arduino.accHigh * 200f);
+            LaunchBall(arduino.accHigh * 5f);
         }
     }
 
@@ -68,7 +68,7 @@ public class PlayerControls : MonoBehaviour {
         direction.Normalize();
         direction.y = Mathf.Sin(angle * Mathf.Deg2Rad);
         print(Time.deltaTime);
-        rb.AddForce(direction.normalized * (u + acceleration*0.11f));
+        rb.AddForce(direction.normalized * (u + acceleration));
         arduino.accHigh = 0;
     }
 }

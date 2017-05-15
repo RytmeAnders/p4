@@ -8,7 +8,7 @@ public class MoveTarget : MonoBehaviour {
     public int increaseScore;
     int score;
 
-    public GameObject targetSmall, targetLarge;
+    public GameObject targets;
     public Vector3[] targetPos = new Vector3[6];
 
     public int currentTarget;
@@ -30,16 +30,14 @@ public class MoveTarget : MonoBehaviour {
     void MoveTargetOnArray() // Sets positions target is to be moved to
     {
         posCounter = -1;
-        targetSmall = GameObject.Find("Small Circle");
-        targetSmall.transform.position = new Vector3(10f, 0.05f, 10f);
-        targetLarge = GameObject.Find("Large Object");
-        targetLarge.transform.position = new Vector3(10f, 0.05f, 10f);
-        targetPos[0] = new Vector3(10f, 0.05f, 10f);
-        targetPos[1] = new Vector3(-10f, 0.05f, -10f);
-        targetPos[2] = new Vector3(30f, 0.05f, 30f);
-        targetPos[3] = new Vector3(40f, 0.05f, 40f);
-        targetPos[4] = new Vector3(50f, 0.05f, 50f);
-        targetPos[5] = new Vector3(60f, 0.05f, 60f);
+        targets = GameObject.Find("Targets");
+        targets.transform.position = new Vector3(10f, 0.05f, 10f);
+        targetPos[0] = new Vector3(15f, 0.05f, -23f);
+        targetPos[1] = new Vector3(-40f, 0.05f, 35f);
+        targetPos[2] = new Vector3(-17f, 0.05f, -32f);
+        targetPos[3] = new Vector3(-40f, 0.05f, 0f);
+        targetPos[4] = new Vector3(-30f, 0.05f, -30f);
+        targetPos[5] = new Vector3(6f, 0.05f, 23f);
     }
 
     void OnCollisionEnter(Collision collision) // Moves target when hit
@@ -51,8 +49,7 @@ public class MoveTarget : MonoBehaviour {
         {
             posCounter = 0;
         }
-        targetLarge.transform.position = targetPos[posCounter];
-        targetSmall.transform.position = targetPos[posCounter];
+        targets.transform.position = targetPos[posCounter];
         print("Score is: " + score);
 
     }

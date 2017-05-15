@@ -125,7 +125,7 @@ void loop()
       Gxyz[0] = 0;
       Serial.print(Gxyz[0]);
     } else {
-      Serial.print(Gxyz[0]/accelerationCut);
+      Serial.print(Gxyz[0]);
     }
     
     Serial.print("_");
