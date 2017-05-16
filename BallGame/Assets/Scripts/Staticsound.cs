@@ -11,10 +11,14 @@ public class Staticsound : MonoBehaviour {
     public AudioClip staticMiss;
 
     public AudioSource aud;
+    AudioSource dyn;
+    Swoosh swoosh;
 
 	void Start () {
         aud = GetComponent<AudioSource>();
-	}
+        dyn = GameObject.Find("Audio Chirp").GetComponent<AudioSource>();
+        swoosh = GameObject.Find("PlayerAudio").GetComponent<Swoosh>();
+    }
 	
 	void Update () {
         if (Input.GetKeyDown(KeyCode.T)) {
@@ -55,8 +59,9 @@ public class Staticsound : MonoBehaviour {
         }
     }
     public void playMiss() { //O
-        if (!aud.isPlaying) {
-            aud.PlayOneShot(staticMiss);
+        dyn.Stop();
+        if (!dyn.isPlaying) {
+            dyn.PlayOneShot(staticChirp);
         }
     }
 }

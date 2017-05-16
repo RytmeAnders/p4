@@ -156,6 +156,7 @@ MonoBehaviour:
   staticScore: {fileID: 8300000, guid: eb20523d451bc064cb1609708498b359, type: 3}
   staticMiss: {fileID: 8300000, guid: b68bb3fec4aa0c94ab370962fb947c52, type: 3}
   aud: {fileID: 76749558}
+  dyn: {fileID: 82010817745680244, guid: 1d6943104edb949499b005402e4b4c99, type: 2}
 --- !u!82 &76749558
 AudioSource:
   m_ObjectHideFlags: 0
