@@ -22,7 +22,7 @@ public class BallChirp : MonoBehaviour {
     void OnAudioFilterRead(float[] data, int channels) {
         // update increment in case frequency has changed
         increment = frequency * 2 * Math.PI / sampling_frequency;
-        while (swoosh.dynamicSound) {
+        if (swoosh.dynamicSound) {
             for (var i = 0; i < data.Length; i = i + channels) {
                 phase = phase + increment;
                 // this is where we copy audio data to make them “available” to Unity

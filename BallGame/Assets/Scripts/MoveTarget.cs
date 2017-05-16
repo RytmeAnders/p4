@@ -29,7 +29,7 @@ public class MoveTarget : MonoBehaviour {
 
     void MoveTargetOnArray() // Sets positions target is to be moved to
     {
-        posCounter = -1;
+        posCounter = 0;
         targets = GameObject.Find("Targets");
         targets.transform.position = new Vector3(10f, 0.05f, 10f);
         targetPos[0] = new Vector3(15f, 0.05f, -23f);
@@ -47,17 +47,10 @@ public class MoveTarget : MonoBehaviour {
         currentTarget++;
         if (posCounter >= 6)
         {
+            currentTarget = 0;
             posCounter = 0;
         }
         targets.transform.position = targetPos[posCounter];
         print("Score is: " + score);
-
-        //Play the score sound, pitch affected by increaseScore
-        if (swoosh.dynamicSound) {
-            ST.aud.Stop();
-            ST.aud.pitch = .3f + ((increaseScore * 1.5f) / 10);
-            ST.playScore();
-        }
-
     }
 }

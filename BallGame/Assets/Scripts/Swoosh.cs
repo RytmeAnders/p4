@@ -53,10 +53,12 @@ public class Swoosh : MonoBehaviour
         dynamicDiff = Mathf.Max(CalculateOrientation(),CalculateAcceleration());        //Find the biggest change
 
         if (dynamicSound) {
+            ST.GetComponent<AudioReverbFilter>().enabled = true;
             //print("Diff Ori: " + orientationDiff + " Raw Ori: " + pc.newOrientation + " | Diff Acc: " + accelerationDiff + " Raw Acc: " + ard.acceleration);
             lowPassFilter.cutoffFrequency = lowCut + dynamicDiff * scalar;              //LPF freq changing based on change
         }
         else { //Static sound
+            ST.GetComponent<AudioReverbFilter>().enabled = false;
 
             if (dynamicDiff > staticThreshold) {        //If difference is > threshold, play a static sound sample
                 print("Sound activated!");

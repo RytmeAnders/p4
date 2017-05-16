@@ -67,7 +67,6 @@ public class PlayerControls : MonoBehaviour {
         direction.y = 0;
         direction.Normalize();
         direction.y = Mathf.Sin(angle * Mathf.Deg2Rad);
-        print(Time.deltaTime);
         rb.AddForce(direction.normalized * (u + acceleration));
         arduino.accHigh = 0;
     }

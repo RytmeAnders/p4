@@ -545,7 +545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3eeb4b32f50555449b24fe4436aa1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dynamicSound: 0
+  dynamicSound: 1
   staticThreshold: 9
   staticFreq: 900
   offset: 0
