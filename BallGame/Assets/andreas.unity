@@ -167,7 +167,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -549,7 +549,7 @@ MonoBehaviour:
   staticThreshold: 9
   staticFreq: 900
   offset: 0
-  lowCut: 110
+  lowCut: 40
   scalar: 20
 --- !u!169 &1080717744
 AudioLowPassFilter:
